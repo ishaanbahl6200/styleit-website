@@ -1,0 +1,942 @@
+/* Basic CSS Reset */
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+body, h1, h2, p, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif; /* Apply Poppins font */
+    line-height: 1.6;
+    background-color: #fff; /* White background */
+    color: #333; /* Dark grey text for readability */
+    -webkit-font-smoothing: antialiased; /* Smoother fonts on WebKit browsers */
+    -moz-osx-font-smoothing: grayscale; /* Smoother fonts on Firefox */
+    /* Custom black circle cursor - thinner */
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Ccircle cx='8' cy='8' r='5' fill='black'/%3E%3C/svg%3E") 8 8, auto;
+}
+
+/* New Top Navigation Bar Styles */
+.top-navbar {
+    display: flex;
+    justify-content: space-between; /* Pushes logo to left, links to right */
+    align-items: center;
+    background-color: transparent; /* Changed from #000 to transparent */
+    padding: 1rem 2rem; /* Padding around the navbar content */
+    color: #000; /* Default text color for navbar to black */
+    position: absolute; /* To overlay on hero section if needed */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100; /* Ensure it's above hero shapes but below modals etc. */
+    /* box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Optional: subtle shadow if fixed */
+}
+
+.logo-container {
+    display: flex; /* To align logo image and text */
+    align-items: center; /* Vertically align items in the middle */
+}
+
+.logo-container .logo-text {
+    font-family: 'Dancing Script', cursive; /* Apply Dancing Script font */
+    font-size: 2.2em; /* Increased font size for cursive style */
+    font-weight: 700; /* Using the bolder weight of Dancing Script */
+    color: #000; /* Changed from #fff to #000 */
+    text-decoration: none;
+    line-height: 1; /* Adjust line-height for cursive font if needed */
+}
+
+.nav-links {
+    list-style: none;
+    display: flex; /* Arrange links horizontally */
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    margin-left: 20px; /* Space between links - reduced from 25px */
+}
+
+.nav-links li a {
+    color: #000; /* Changed from #fff to #000 */
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1em;
+    transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+    color: #555; /* Changed from #ccc to a dark grey */
+}
+
+/* Adjust main content padding if using a fixed navbar */
+/* main { */
+/* padding-top: 70px; /* Example: Adjust based on navbar height */
+/* } */
+
+section {
+    padding: 2.5rem 2rem;
+    margin: 0;
+    /* border-bottom: 1px solid #eee; */ /* Lighter border for sections - REMOVED */
+}
+
+@keyframes animatedGradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+#hero {
+    min-height: 85vh; /* Make hero section take most of the viewport height */
+    display: flex;
+    align-items: center; /* Vertically center content */
+    justify-content: center; /* Horizontally center content */
+    color: #333; /* Default text color back to dark for white background */
+    background: #fff; /* White background */
+    position: relative; /* Keep for positioning pseudo-elements later */
+    overflow: hidden; /* Recommended if pseudo-elements might peek out */
+    padding-top: 80px; /* Added padding to account for transparent absolute navbar */
+}
+
+/* Key Highlights Section Styles - Light Theme, Inline (now inside hero) */
+/* Using .hero-sub-highlights to target the div, #key-highlights id still present on div for potential JS/anchor */
+.hero-sub-highlights {
+    background-color: transparent; /* Make background transparent */
+    padding: 0; /* Remove section-level padding */
+    margin-top: 2rem; /* Add space below hero buttons */
+    text-align: center; 
+}
+
+.highlights-container {
+    display: flex;
+    align-items: center; /* Vertically align items in a row */
+    justify-content: center; /* Center the group of items horizontally */
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+    gap: 1.5rem; /* Restore gap for horizontal layout */
+}
+
+.highlight-badge {
+    /* background-color: #e9e9e9; */ /* Optional: very subtle badge background */
+    /* color: #333; */ /* Dark text color */
+    /* padding: 0.5rem 1rem; */
+    /* border-radius: 16px; */ /* Softer pill shape if background is used */
+    font-size: 0.85em; /* Reduced font size from 0.95em */
+    font-weight: 500;
+    color: #333; /* Text color for the badge */
+    display: inline-flex; 
+    align-items: center;
+    /* border: 1px solid #ddd; */ /* Optional: subtle border */
+}
+
+.highlight-icon {
+    display: inline-flex; 
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #000; /* Black background for checkmark circle */
+    color: #fff; /* White checkmark */
+    font-size: 0.75em; 
+    font-weight: bold;
+    margin-right: 0.6rem;
+    line-height: 1; 
+}
+/* End Key Highlights Section Styles */
+
+/* New animation for more prominent movement and pulsing */
+@keyframes driftAndPulse {
+    0% {
+        transform: translate(0px, 0px) scale(1);
+        opacity: 0.35; /* Slightly lower base for more contrast */
+    }
+    25% {
+        transform: translate(35px, -25px) scale(1.1); /* Increased translation and scale */
+        opacity: 0.65; /* Higher peak opacity */
+    }
+    50% {
+        transform: translate(-20px, 20px) scale(0.95); /* Increased translation */
+        opacity: 0.3; /* Lower valley opacity */
+    }
+    75% {
+        transform: translate(25px, 30px) scale(1.08); /* Increased translation and scale */
+        opacity: 0.6;
+    }
+    100% {
+        transform: translate(0px, 0px) scale(1);
+        opacity: 0.35;
+    }
+}
+
+#hero::before, #hero::after {
+    content: '';
+    position: absolute;
+    /* border-radius: 50%; */ /* Replaced with abstract shape */
+    border-radius: 40% 60% 70% 30% / 30% 50% 50% 70%; /* Abstract shape 1 */
+    z-index: 0; 
+    animation: driftAndPulse 16s ease-in-out infinite alternate; 
+}
+
+#hero::before {
+    width: 450px; /* Slightly larger */
+    height: 450px; /* Slightly larger */
+    background-color: rgba(173, 216, 230, 0.45); /* Opacity increased from 0.3 to 0.45 */
+    top: -120px; /* Adjusted position */
+    left: -180px; /* Adjusted position */
+}
+
+#hero::after {
+    width: 400px;  
+    height: 400px; 
+    background-color: rgba(230, 190, 230, 0.45); 
+    bottom: 20px; 
+    right: -150px; 
+    animation-delay: -10s; 
+    border-radius: 60% 40% 30% 70% / 50% 70% 40% 60%; /* Abstract shape 2 for variety */
+}
+
+.hero-content-wrapper {
+    text-align: center; 
+    max-width: 800px; 
+    padding: 2rem; 
+    position: relative; /* Ensure content is above pseudo-elements */
+    z-index: 1; /* Ensure content is above pseudo-elements */
+}
+
+#hero h2 {
+    margin-bottom: 1rem;
+    font-size: 3.2em; /* Reverted from 2.6em back to original larger size */
+    font-weight: 700; 
+    color: #333; /* Dark text for heading */
+}
+
+#hero p {
+    margin-bottom: 1.5rem;
+    font-size: 1.15em; /* Reduced from 1.35em */
+    color: #555; /* Slightly lighter dark text for paragraph */
+}
+
+.hero-buttons-container {
+    display: flex;
+    justify-content: center; /* Center the buttons if they don't fill the space */
+    gap: 1rem; /* Space between the buttons */
+    margin-top: 2rem; /* Space above the button container */
+}
+
+#hero .cta-button {
+    background-color: #000; /* Black background */
+    color: #fff; /* White text */
+    padding: 14px 30px; 
+    font-size: 1.1em;
+    border: 2px solid #000; /* Ensure border for consistency with secondary */
+    text-decoration: none; /* Added to ensure it overrides any default */
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; /* Added for smooth hover */
+}
+
+#hero .cta-button:hover {
+    background-color: #333; /* Darker grey on hover */
+    border-color: #333; /* Match border color on hover */
+}
+
+#hero .cta-button-secondary {
+    background-color: #fff; /* White background */
+    color: #000; /* Black text */
+    border: 2px solid #000; /* Black border */
+}
+
+#hero .cta-button-secondary:hover {
+    background-color: #f0f0f0; /* Light grey background on hover */
+    color: #000;
+    border-color: #000;
+}
+
+/* Ensure the hero image (if any) within the wrapper is also centered if it's not full width */
+.hero-content-wrapper img {
+    display: block; /* To allow margin auto to work for centering */
+    margin-left: auto;
+    margin-right: auto;
+    /* The inline style max-width: 100% will prevent it from overflowing */
+    /* Consider removing the inline style from HTML and controlling it here if needed */
+}
+
+#features h2, #about h2, #contact h2 {
+    text-align: center;
+    margin-bottom: 2rem; /* More space below section titles */
+    font-size: 2em; /* Adjust font size for Poppins */
+    font-weight: 600; /* Adjust font weight */
+}
+
+/* #features div { */ /* Commenting out old general #features div styling */
+    /* margin-bottom: 1.5rem; */
+    /* padding: 1rem; */
+    /* background-color: #f9f9f9; */ /* Very light grey for feature cards */
+    /* border-radius: 5px; */
+/* } */
+
+/* Old Styles for Features Section - Commenting out as structure has changed */
+/*
+.feature-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 3rem; 
+    gap: 2rem; 
+    padding: 2rem;
+    background-color: #fff; 
+    border-radius: 8px;
+    opacity: 0; 
+    transform: translateY(30px); 
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out; 
+}
+
+.feature-item.feature-item-visible {
+    opacity: 1; 
+    transform: translateY(0); 
+}
+
+.feature-item-reverse {
+    flex-direction: row-reverse;
+}
+
+.feature-text-container {
+    flex: 1; 
+    max-width: 50%; 
+}
+
+.feature-text-container h3 {
+    font-size: 1.8em; 
+    margin-bottom: 0.75rem;
+    color: #000; 
+    font-weight: 600; 
+}
+
+.feature-text-container p {
+    font-size: 1em;
+    line-height: 1.7;
+    color: #555; 
+}
+
+.feature-image-container {
+    flex: 1; 
+    max-width: 40%; 
+    text-align: center; 
+}
+
+.feature-image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+}
+*/
+/* End of Old Styles for Features Section */
+
+/* New Styles for Features Grid Section - Commenting out as structure changed again */
+/*
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 2rem; 
+    margin-top: 2rem; 
+}
+
+.feature-grid-item {
+    background-color: #f9f9f9; 
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center; 
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05); 
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+}
+
+.feature-grid-item img {
+    max-width: 120px; 
+    max-height: 100px; 
+    object-fit: contain; 
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    background-color: #fff; 
+    padding: 5px; 
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.feature-grid-item h3 {
+    font-size: 1.3em; 
+    color: #333;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.feature-grid-item p {
+    font-size: 0.95em;
+    color: #555;
+    line-height: 1.6;
+}
+*/
+/* End of New Styles for Features Grid Section */
+
+/* New Styles for Interactive Features Section */
+#features {
+    position: relative; /* For positioning pseudo-elements */
+    overflow: hidden;   /* To contain pseudo-elements */
+    background-color: #fff; /* Add white background to obscure hero blobs */
+}
+
+#features h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2.5em; 
+    font-weight: 700; 
+    font-family: 'Dancing Script', cursive; 
+    color: #333;
+    position: relative; /* Ensure heading is above pseudo-elements */
+    z-index: 1;
+}
+
+.features-interactive-container {
+    display: flex;
+    gap: 2.5rem; 
+    margin-top: 2rem;
+    align-items: flex-start; 
+    position: relative; /* Ensure container is above pseudo-elements */
+    z-index: 1;
+}
+
+/* #features::before { ... } // This block will be removed by reverting */
+
+#features::after { 
+    content: '';
+    position: absolute;
+    /* border-radius: 50%; */ /* Replaced with abstract shape */
+    border-radius: 55% 45% 40% 60% / 60% 50% 55% 45%; /* Abstract shape 3 */
+    z-index: 0; 
+    animation: driftAndPulse 25s ease-in-out infinite alternate; 
+    width: 400px;
+    height: 400px;
+    background-color: rgba(255, 223, 100, 0.85); /* Darker, more saturated yellow */
+    top: 25%; 
+    right: 5%;  
+    animation-delay: -7s; 
+}
+
+.feature-details-list {
+    flex: 0.8; /* Made list column narrower */
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; 
+}
+
+.feature-detail-item {
+    padding: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    border: 1px solid #eee;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.feature-detail-item:hover, .feature-detail-item.active-feature {
+    background-color: #f0f0f0; /* Light highlight on hover/active */
+    border-color: #ddd;
+}
+
+.feature-detail-item h3 {
+    font-family: 'Dancing Script', cursive; /* Apply cursive font */
+    font-size: 1.8em; /* Adjusted for Dancing Script, was 1.4em */
+    color: #333;
+    margin-bottom: 0.5rem;
+    font-weight: 700; /* Dancing Script often looks better bolder */
+}
+
+.feature-detail-item p {
+    font-size: 0.95em;
+    color: #555;
+    line-height: 1.6;
+}
+
+.feature-image-preview {
+    flex: 1.5; /* Made image column wider */
+    position: sticky; 
+    top: 100px; 
+    max-height: calc(100vh - 120px); /* Ensure it doesn't overflow viewport */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#current-feature-image {
+    max-width: 100%;
+    max-height: 500px; 
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out; /* Added transform to transition */
+}
+
+/* Removed .feature-cycle-bar-container styles */
+/* Removed .cycle-bar-item styles */
+/* Removed .cycle-bar-item.active::before styles */
+/* Removed @keyframes fillCycleBar */
+
+/* End of New Styles for Interactive Features Section */
+
+/* Testimonials Section Styles */
+#testimonials {
+    padding: 1.5rem 2rem; /* Reduced top/bottom padding from 3rem */
+    background-color: #f9f9f9; 
+    text-align: center;
+    position: relative; /* For potential pseudo-elements if desired later */
+    overflow: hidden; /* Important for the banner */
+}
+
+#testimonials h2 {
+    font-family: 'Poppins', sans-serif; 
+    font-size: 2em; /* Reduced from 2.2em */
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1.5rem; /* Reduced from 2.5rem */
+    position: relative;
+    z-index: 1; /* Ensure it's above any track pseudo-elements if track becomes full-width BG */
+}
+
+.testimonial-banner-container {
+    width: 100%;
+    overflow: hidden; /* Crucial for the scrolling effect */
+    margin: 0 auto; /* Center if a max-width is set later */
+}
+
+.testimonial-track {
+    display: flex;
+    /* width will be set by JS, or very wide (e.g., 300%) if not cloning for simple overflow scroll */
+    /* For now, let JS handle width based on card count for cloning animation */
+    will-change: transform; /* Hint for browser animation optimization */
+}
+
+.testimonial-card {
+    flex: 0 0 auto; 
+    width: 400px; 
+    margin-right: 1.5rem; 
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem; /* Reduced top/bottom padding further */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+.testimonial-avatar {
+    width: 50px; /* Further reduced avatar size */
+    height: 50px; /* Further reduced avatar size */
+    border-radius: 50%; 
+    object-fit: cover;
+    margin-bottom: 0.5rem; /* Further reduced margin */
+    border: 2px solid #eee; 
+}
+
+.testimonial-text {
+    font-size: 0.9em; /* Slightly reduced font size */
+    color: #555;
+    line-height: 1.5; /* Slightly reduced line height */
+    margin-bottom: 0.75rem; /* Reduced margin */
+    font-style: italic;
+    text-align: center;
+}
+
+.testimonial-author {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.25rem;
+    text-align: center;
+}
+
+.testimonial-role {
+    font-size: 0.85em;
+    color: #777;
+    text-align: center;
+}
+/* End of Testimonials Section Styles */
+
+/* Pricing Section Styles - Light Theme Update */
+#pricing {
+    padding: 3rem 2rem; /* Reverted padding, was 4rem */
+    background-color: #fff; /* Light background for the section */
+    text-align: center;
+    color: #333; /* Default text color for section */
+}
+
+#pricing h2 {
+    font-family: 'Poppins', sans-serif; 
+    font-size: 2.2em; /* Reverted size */
+    font-weight: 600;
+    color: #333; /* Dark title */
+    margin-bottom: 2.5rem; /* Reverted margin */
+}
+
+.pricing-plans-container {
+    display: flex;
+    justify-content: center; 
+    align-items: stretch; 
+    flex-wrap: wrap; 
+    gap: 2rem; /* Reverted gap */
+}
+
+.pricing-plan-card {
+    background-color: #f9f9f9; 
+    border: 1px solid #eee; 
+    border-radius: 8px; 
+    padding: 2rem; 
+    width: 100%; 
+    max-width: 350px; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.07);
+    display: flex;
+    flex-direction: column; 
+    text-align: left; 
+    color: #555; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Added transition for hover */
+}
+
+.pricing-plan-card:hover {
+    transform: translateY(-8px); /* Lift card on hover */
+    box-shadow: 0 12px 25px rgba(0,0,0,0.12); /* More pronounced shadow on hover */
+}
+
+.pricing-plan-card.premium-plan-highlighted {
+    border-top: 4px solid #000; /* Black top border for highlight on light theme */
+    /* background-color: #fff; /* Optionally different BG for premium */
+}
+
+.pricing-plan-card h3 {
+    font-size: 1.6em; 
+    font-weight: 600;
+    color: #333; 
+    margin-bottom: 0.75rem;
+    text-align: center;
+}
+
+.pricing-plan-card .price {
+    font-size: 2.5em; 
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 0.5rem; /* Adjusted margin */
+    text-align: center;
+}
+
+.pricing-plan-card .price span {
+    font-size: 0.5em; 
+    font-weight: 400;
+    color: #777; 
+    margin-left: 4px;
+}
+
+.pricing-plan-card .price-contact {
+    font-size: 1.6em; /* Adjusted for light theme */
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 1.5rem; 
+    text-align: center; /* Center "Contact us" text */
+    min-height: 50px; /* Adjusted min-height */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center content within the price area */
+}
+
+.plan-features {
+    list-style: none; 
+    padding: 0;
+    margin: 1.5rem 0; 
+    flex-grow: 1; 
+}
+
+.plan-features li {
+    font-size: 0.95em; 
+    color: #555; 
+    margin-bottom: 0.5rem; 
+    padding-left: 1.5em; 
+    position: relative;
+}
+
+.plan-features li::before { 
+    content: '\2713'; 
+    color: #000; /* Black checkmark for light theme */
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+/* Remove specific checkmark color for non-premium as default is now black */
+/* .core-plan .plan-features li::before, */
+/* .enterprise-plan .plan-features li::before { ... } */
+
+
+.pricing-plan-card .cta-button-outline {
+    background-color: #fff; /* White background for outline button */
+    color: #000; /* Black text */
+    border: 2px solid #000; /* Black border */
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 500;
+    text-align: center;
+    display: block; 
+    width: 100%;
+    margin-top: auto;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.pricing-plan-card .cta-button-outline:hover {
+    background-color: #f0f0f0; /* Light grey on hover */
+    border-color: #000;
+    color: #000;
+}
+
+.pricing-plan-card .cta-button-filled {
+    background-color: #000; /* Black filled button for primary */
+    color: #fff;
+    border: 2px solid #000;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 500;
+    text-align: center;
+    display: block;
+    width: 100%;
+    margin-top: auto;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.pricing-plan-card .cta-button-filled:hover {
+    background-color: #333; /* Darker grey on hover */
+    border-color: #333;
+}
+
+/* General .cta-button might need adjustment if used directly in pricing */
+.pricing-plan-card .cta-button {
+    /* Primary button is now .cta-button-filled */
+    /* This might affect the .cta-button.cta-button-outline if not specific enough */
+}
+/* End of Pricing Section Styles */
+
+#contact {
+    position: relative; /* For positioning pseudo-elements */
+    overflow: hidden;   /* To contain pseudo-elements */
+    padding-top: 2.5rem; /* Ensure existing padding is maintained or set */
+    padding-bottom: 10rem; /* Increased padding-bottom to contain blob */
+    /* border-bottom: 1px solid #eee; /* This was on the generic section rule, ensure it's here if needed */
+}
+
+#contact h2 {
+    position: relative; /* Ensure heading is above pseudo-elements */
+    z-index: 1;
+}
+
+#contact p {
+    position: relative; /* Ensure paragraph is above pseudo-elements */
+    z-index: 1;
+    text-align: center; /* Center the paragraph text */
+}
+
+#contact::before { 
+    content: '';
+    position: absolute;
+    /* border-radius: 50%; */ /* Replaced with abstract shape */
+    border-radius: 30% 70% 50% 50% / 40% 30% 60% 60%; /* Abstract shape 4 */
+    z-index: 0; 
+    animation: driftAndPulse 22s ease-in-out infinite alternate; 
+    width: 350px;
+    height: 350px;
+    background-color: rgba(173, 216, 230, 0.4); /* Soft Light Blue, slightly adjusted opacity */
+    bottom: -150px; /* Positioned differently */
+    left: -100px;
+    animation-delay: -3s; /* Different delay */
+}
+
+/* Wishlist Form Styles - Enhancements */
+.wishlist-form-container {
+    margin-top: 2.5rem; 
+    margin-bottom: 3rem; /* Added space below the form container */
+    padding: 2rem; 
+    background-color: #fff; /* White background for a card feel */
+    border-radius: 8px;
+    text-align: center; 
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08); /* Slightly more prominent shadow */
+    max-width: 500px; /* Give it a max-width if centered in a wider section */
+    margin-left: auto; /* Center the container itself if #contact is full-width */
+    margin-right: auto; /* Center the container itself */
+}
+
+.wishlist-form-container h3 {
+    font-size: 1.8em; /* More prominent heading */
+    color: #333;
+    margin-bottom: 0.75rem; /* Adjusted margin */
+    font-weight: 600;
+}
+
+.wishlist-form-container p {
+    margin-bottom: 1.5rem; /* More space below paragraph */
+    font-size: 1em; /* Slightly larger paragraph text */
+    color: #555;
+    line-height: 1.7;
+}
+
+#wishlist-form input[type="email"] {
+    padding: 12px 15px; /* Increased padding */
+    font-size: 1em;
+    border: 1px solid #ddd; /* Lighter border */
+    border-radius: 6px; /* Slightly more rounded */
+    width: 100%; 
+    max-width: 380px; /* Adjusted max width */
+    margin-bottom: 1.25rem; /* Adjusted margin */
+    box-sizing: border-box; 
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#wishlist-form input[type="email"]:focus {
+    border-color: #000; /* Black border on focus */
+    box-shadow: 0 0 0 3px rgba(0,0,0,0.1); /* Subtle focus ring */
+    outline: none; /* Remove default browser outline */
+}
+
+#wishlist-form .cta-button {
+    padding: 0.75rem 1.5rem; /* Adjusted padding: 12px top/bottom, 24px left/right */
+    font-size: 1em; /* Match pricing button font-size if not using ems in pricing specifically */
+    background-color: #000;
+    color: #fff;
+    border: 2px solid #000;
+    border-radius: 6px; /* Consistent with pricing buttons */
+    text-decoration: none; /* Ensure no underline */
+    font-weight: 500; /* Consistent font weight */
+    display: inline-block; 
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+#wishlist-form .cta-button:hover {
+    background-color: #333;
+    border-color: #333;
+}
+
+.sr-only { /* For accessible labels that are not visually displayed */
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+}
+
+footer {
+    text-align: center;
+    padding: 2rem 1rem; 
+    background-color: #000; 
+    color: #fff; 
+}
+
+/* FAQ Section Styles */
+#faq {
+    padding: 3rem 2rem;
+    background-color: #f9f9f9; /* Light grey background for FAQ section */
+}
+
+#faq h2 {
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.2em;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 2.5rem;
+}
+
+.faq-accordion {
+    max-width: 750px; /* Max width for the accordion */
+    margin: 0 auto; /* Center the accordion */
+}
+
+.faq-item {
+    border-bottom: 1px solid #ddd; /* Separator line */
+}
+
+.faq-item:last-child {
+    border-bottom: none;
+}
+
+.faq-question {
+    background-color: transparent;
+    border: none;
+    color: #333;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 0.5rem; /* Adjusted padding */
+    text-align: left;
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1em; /* Slightly larger question text */
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.faq-question:hover {
+    background-color: #f0f0f0; /* Slight hover effect */
+}
+
+.faq-icon {
+    font-size: 1.4em;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+.faq-question[aria-expanded="true"] .faq-icon {
+    transform: rotate(45deg); /* Change + to x */
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0, 1, 0, 1), padding 0.3s ease; /* Smooth transition */
+    /* cubic-bezier for a more springy feel on open/close if desired */
+    /* transition: max-height 0.3s ease-out; */ 
+    background-color: #fff; /* White background for answer area */
+    padding: 0 1rem; /* Initial padding, will transition */
+}
+
+.faq-answer p {
+    color: #555;
+    line-height: 1.7;
+    font-size: 0.95em;
+    padding: 1rem 0; /* Padding for the actual text content */
+}
+
+.faq-question[aria-expanded="true"] + .faq-answer {
+    max-height: 500px; /* Adjust if answers are very long */
+    /* padding: 1.5rem 1rem; /* Padding when open */ /* Handled by p now */
+}
+/* End of FAQ Section Styles */
+
+footer {
+    text-align: center;
+    padding: 2rem 1rem; 
+    background-color: #000; 
+    color: #fff; 
+} 
